@@ -5,7 +5,7 @@ const Place = require('../models/place');
 // Haversine formula to calculate distance between two lat/lon points
 const getDistance = (lat1, lon1, lat2, lon2) => {
   const toRad = (value) => (value * Math.PI) / 180;
-  const R = 6371; 
+  const R = 6371; // Radius of the Earth in kilometers
 
   const dLat = toRad(lat2 - lat1);
   const dLon = toRad(lon2 - lon1);
@@ -14,24 +14,24 @@ const getDistance = (lat1, lon1, lat2, lon2) => {
     Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
     Math.sin(dLon / 2) * Math.sin(dLon / 2);
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  return R * c; 
+  return R * c; // Distance in kilometers
 };
 
-
+// Get all places
 const getAllPlaces = async (req, res) => {
   try {
-    const places = await Place.find(); 
+    const places = await Place.find(); // Fetch all places from the database
     res.json(places);
   } catch (error) {
-    res.status(500).json({ message: error.message }); 
+    res.status(500).json({ message: error.message }); // Handle errors
   }
 };
 
-
+// Get place by ID
 const getPlaceById = async (req, res) => {
   try {
     const placeId = req.params.id;
-    const place = await Place.findById(placeId); 
+    const place = await Place.findById(placeId); // Fetch place by ID from the database
 
     if (place) {
       res.json(place);
@@ -43,7 +43,7 @@ const getPlaceById = async (req, res) => {
   }
 };
 
-
+// Add a new place
 const createPlace = async (req, res) => {
   try {
     const newPlace = new Place(req.body); // Create a new Place instance with the request body
@@ -57,7 +57,6 @@ const createPlace = async (req, res) => {
 // Sort places by proximity to a given lat/lon
 const getPlacesSortedByProximity = async (req, res) => {
   const { lat, lon } = req.query;
-  console.log("hi hello");
 
   if (!lat || !lon) {
     return res.status(400).send('Latitude and longitude are required');
@@ -79,11 +78,9 @@ const getPlacesSortedByProximity = async (req, res) => {
       };
     }).sort((a, b) => a.distance - b.distance);
 
-    console.log(sortedPlaces);
-
     res.json(sortedPlaces);
   } catch (error) {
-    res.status(500).json({ message: error.message }); 
+    res.status(500).json({ message: error.message });
   }
 };
 
