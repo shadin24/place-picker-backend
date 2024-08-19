@@ -1,0 +1,99 @@
+{
+	"info": {
+		"_postman_id": "fbc18074-a413-4dd9-b01c-ce3de667ab91",
+		"name": "place-picker",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37731428"
+	},
+	"item": [
+		{
+			"name": "readData",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/places/proximity?lat=27.9881&lon=86.925",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"places",
+						"proximity"
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "27.9881"
+						},
+						{
+							"key": "lon",
+							"value": "86.925"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/places",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"places"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sorted Data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/places/proximity/?lat=9.931233&lon=76.267303",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"places",
+						"proximity",
+						""
+					],
+					"query": [
+						{
+							"key": "lat",
+							"value": "9.931233"
+						},
+						{
+							"key": "lon",
+							"value": "76.267303"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
